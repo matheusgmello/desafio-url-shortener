@@ -1,56 +1,24 @@
-package dev.matheus.url_shortener.links;
-
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+package dev.matheus.url_shortener.Links;
 
 import java.time.LocalDateTime;
 
 public class LinkResponse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String urlLong;
+    private String urlLonga;
     private String urlEncurtada;
     private String urlQrCode;
-
     private LocalDateTime urlCriadaEm;
 
     public LinkResponse() {
     }
 
-    public LinkResponse(Long id, LocalDateTime urlCriadaEm, String urlLong, String urlQrCode, String urlEncurtada) {
+    public LinkResponse(Long id, String urlLonga, String urlEncurtada, String urlQrCode, LocalDateTime urlCriadaEm) {
         this.id = id;
-        this.urlCriadaEm = urlCriadaEm;
-        this.urlLong = urlLong;
+        this.urlLonga = urlLonga;
+        this.urlEncurtada = urlEncurtada;
         this.urlQrCode = urlQrCode;
-        this.urlEncurtada = urlEncurtada;
-    }
-
-    public LocalDateTime getUrlCriadaEm() {
-        return urlCriadaEm;
-    }
-
-    public void setUrlCriadaEm(LocalDateTime urlCriadaEm) {
         this.urlCriadaEm = urlCriadaEm;
-    }
-
-    public String getUrlEncurtada() {
-        return urlEncurtada;
-    }
-
-    public void setUrlEncurtada(String urlEncurtada) {
-        this.urlEncurtada = urlEncurtada;
-    }
-
-    public String getUrlLong() {
-        return urlLong;
-    }
-
-    public void setUrlLong(String urlLong) {
-        this.urlLong = urlLong;
     }
 
     public Long getId() {
@@ -61,11 +29,35 @@ public class LinkResponse {
         this.id = id;
     }
 
+    public String getUrlLonga() {
+        return urlLonga;
+    }
+
+    public void setUrlLonga(String urlLonga) {
+        this.urlLonga = urlLonga;
+    }
+
+    public String getUrlEncurtada() {
+        return urlEncurtada;
+    }
+
+    public void setUrlEncurtada(String urlEncurtada) {
+        this.urlEncurtada = urlEncurtada;
+    }
+
     public String getUrlQrCode() {
         return urlQrCode;
     }
 
     public void setUrlQrCode(String urlQrCode) {
         this.urlQrCode = urlQrCode;
+    }
+
+    public LocalDateTime getUrlCriadaEm() {
+        return urlCriadaEm;
+    }
+
+    public void setUrlCriadaEm(LocalDateTime urlCriadaEm) {
+        this.urlCriadaEm = urlCriadaEm;
     }
 }

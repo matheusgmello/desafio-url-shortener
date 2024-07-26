@@ -1,38 +1,54 @@
-package dev.matheus.url_shortener.links;
+package dev.matheus.url_shortener.Links;
 
-
-import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 @Entity
-@Table(name = "tab_links")
+@Table(name = "links")
 public class Link {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String urlLong;
+    private String urlLonga;
     private String urlEncurtada;
     private String urlQrCode;
-
     private LocalDateTime urlCriadaEm;
+    private String urlOriginal;
 
-    public Link(Long id, LocalDateTime urlCriadaEm, String urlLong, String urlQrCode, String urlEncurtada) {
-        this.id = id;
-        this.urlCriadaEm = urlCriadaEm;
-        this.urlLong = urlLong;
-        this.urlQrCode = urlQrCode;
-        this.urlEncurtada = urlEncurtada;
-    }
-
-    public Link(Long id) {
-        this.id = id;
-    }
 
     public Link() {
+    }
 
+    public Link(Long id, String urlLonga, String urlEncurtada, String urlQrCode, LocalDateTime urlCriadaEm) {
+        this.id = id;
+        this.urlLonga = urlLonga;
+        this.urlEncurtada = urlEncurtada;
+        this.urlQrCode = urlQrCode;
+        this.urlCriadaEm = urlCriadaEm;
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUrlLonga() {
+        return urlLonga;
+    }
+
+    public void setUrlLonga(String urlLonga) {
+        this.urlLonga = urlLonga;
     }
 
     public String getUrlEncurtada() {
@@ -51,22 +67,6 @@ public class Link {
         this.urlQrCode = urlQrCode;
     }
 
-    public String getUrlLong() {
-        return urlLong;
-    }
-
-    public void setUrlLong(String urlLong) {
-        this.urlLong = urlLong;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public LocalDateTime getUrlCriadaEm() {
         return urlCriadaEm;
     }
@@ -74,4 +74,5 @@ public class Link {
     public void setUrlCriadaEm(LocalDateTime urlCriadaEm) {
         this.urlCriadaEm = urlCriadaEm;
     }
+
 }

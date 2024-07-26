@@ -1,4 +1,4 @@
-package dev.matheus.url_shortener.links;
+package dev.matheus.url_shortener.Links;
 
 import java.time.LocalDateTime;
 
@@ -7,32 +7,33 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LinkService {
+    private LinkRepository repository;
 
-    private LinkRepository linkRepository;
-
-    public LinkService(LinkRepository linkRepository) {
-        this.linkRepository = linkRepository;
+    public LinkService(LinkRepository repository) {
+        this.repository = repository;
     }
 
-    public String gerarUrlAleatoria(){
-        return RandomStringUtils.randomAlphanumeric(5,10);
+    // Gerando uma url aleatória
+    // TODO: REFATORAR PARA INCLUIR PARTE DA URL ORIGINAL NO NOSSO ALGORITMO DE GERAÇÃO DE URL
+    public String gerarUrlAleatoria() {
+        return RandomStringUtils.randomAlphanumeric(5, 10);
     }
 
-    public Link encurtarUrl(String urlOrginal){
+    public Link encurtarUrl(String urlOriginal) {
         Link link = new Link();
-        link.setUrlLong(urlOrginal);
+        link.setUrlLonga(urlOriginal);
         link.setUrlEncurtada(gerarUrlAleatoria());
         link.setUrlCriadaEm(LocalDateTime.now());
-        link.setUrlQrCode("QR CODE INDISPONIVEL NO MOMENTO");
+        link.setUrlQrCode("QR CODE INDISPONÍVEL NO MOMENTO");
 
-        return linkRepository.save(link);
+        return repository.save(link);
     }
 
     public Link obterUrlOriginal(String urlEncurtada) {
         try {
-            return linkRepository.findByUrlOriginal(urlEncurtada);
+            return repository.findByUrlEncurtada(urlEncurtada);
         } catch (Exception erro) {
-            throw new RuntimeException("Url não existe no nosso registro");
+            throw new RuntimeException("Url não existe no registro", erro);
         }
     }
 }
